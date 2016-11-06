@@ -1,0 +1,40 @@
+# System files
+*.swp
+*~
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic Libraries
+*.so
+*.dylib
+
+# Dependency files
+*.d
+
+# Executables
+*.exe
+*.out
+*.app
+
+# python bytecode
+*.pyc
+*.pyo
+__pycache__
+
+# Debugging
+*.log
+*.txt
+
+# CLion
+.idea
+.idea/*
+
+# Unused Assets
+spaceshooter/
