@@ -1,7 +1,7 @@
 SpaceBound
 ============
 
-SpaceBound Game - A spaceshooter developed in C++, using the [LiteEngine2D game engine.](https://github.com/maritim/LiteEngine2D)
+SpaceBound is a lightweight spaceshooter type game developed in C++, using the [LiteEngine2D](https://github.com/maritim/LiteEngine2D) game engine.
 
 ## Table of contents
 
@@ -52,3 +52,5 @@ Linux Command Line
 * Run the application
 
         ./SpaceBound.out
+
+* Enjoy!
