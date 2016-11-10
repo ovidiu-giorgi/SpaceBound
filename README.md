@@ -7,17 +7,18 @@ SpaceBound is a lightweight spaceshooter type game developed in C++, using the [
 
 * [Download](#get-the-project-from-github)
 * [Install dependencies](#install-and-configure-dependecies)
+* [Controls](#controls)
 
 Get the project from GitHub
 ===========================
 
 Directly from this page
-------------------------
+-----------------------
 
 * Download the entire project as a **.zip** archive from the top-right button
 
 Using command line
--------------------
+------------------
 
 * Install git 
 
@@ -32,7 +33,7 @@ Using command line
         git clone https://github.com/ovidiu-giorgi/SpaceBound 
 
 Install and configure dependecies
-===============================
+=================================
 
 Linux
 --------------------------
@@ -54,3 +55,10 @@ Linux Command Line
         ./SpaceBound.out
 
 * Enjoy!
+
+Controls
+========
+
+* W, A, S, D to move.
+* L to shoot.
+* ESC to exit the game.
