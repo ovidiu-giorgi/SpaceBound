@@ -1,11 +1,9 @@
 #include "GameScene.h"
-#include "ScrollingBG.h"
 #include "Game.h"
+#include "Input.h"
+#include "MenuScene.h"
+#include "ScrollingBG.h"
 #include "Player.h"
-
-// delete this
-#include "Asteroid.h"
-#include "Screen.h"
 
 #include <iostream>
 
@@ -29,6 +27,15 @@ GameScene::~GameScene()
 
 void GameScene::Update()
 {
+  if (_player->IsRemoved()) {
+    Game::Instance()->SwitchScene(new MenuScene());
+    return;
+  }
+
+  if (Input::GetKeyDown(27)) {
+    Game::Instance()->End();
+  }
+
   // Spawn enemies
   std::vector<GameObject*> enemies = _waveSpawner->GetWave(_gameObjects);
   for (auto it : enemies) {

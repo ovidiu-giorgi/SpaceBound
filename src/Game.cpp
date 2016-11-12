@@ -19,7 +19,7 @@
 
 Game::Game() :
   _gameOver(false),
-  _switchedScene(false)
+  _hasSceneQueued(false)
 {
   _currentScene = new GameScene();
 
@@ -40,24 +40,21 @@ Game* Game::Instance()
 
 void Game::Start()
 {
-  bool running = true;
-
-  while (running && !_gameOver)
+  while (!_gameOver)
   {
-    _switchedScene = false;
+    if (_hasSceneQueued) {
+      delete _currentScene;
+      _currentScene = _nextScene;
+      _hasSceneQueued = false;
+      // GameTime::Init();
+    }
 
     Screen::Clear();
 
     GameTime::UpdateFrame();
     Input::UpdateState();
 
-    if (Input::GetQuit() || Input::GetKeyDown(27)) {
-      running = false;
-      continue;
-    }
-
     _currentScene->Update();
-    if (_switchedScene) continue;
     _currentScene->Display();
 
     Screen::Render();
@@ -70,6 +67,11 @@ void Game::Start()
   delete _currentScene;
 }
 
+void Game::Restart()
+{
+  SwitchScene(new GameScene());
+}
+
 void Game::End()
 {
   _gameOver = true;
@@ -77,6 +79,6 @@ void Game::End()
 
 void Game::SwitchScene(Scene* scene)
 {
-  _currentScene = scene;
-  _switchedScene = true;
+  _nextScene = scene;
+  _hasSceneQueued = true;
 }

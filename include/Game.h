@@ -12,6 +12,7 @@ public:
   static Game* Instance();
 
   void Start();
+  void Restart();
   void End();
 
   void SwitchScene(Scene* scene);
@@ -24,7 +25,8 @@ private:
 
 private:
   bool _gameOver;
-  bool _switchedScene;
+  bool _hasSceneQueued;
+  Scene* _nextScene;
 };
 
 #endif

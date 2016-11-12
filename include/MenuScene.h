@@ -6,17 +6,12 @@
 class MenuScene : public Scene
 {
 public:
-  static MenuScene* Instance();
+  MenuScene();
+  ~MenuScene();
 
   void Update();
   void Display();
   void Clear();
-
-private:
-  MenuScene();
-  ~MenuScene();
-  MenuScene(const MenuScene& other);
-  MenuScene& operator=(const MenuScene& other);
 };
 
 #endif

@@ -1,26 +1,17 @@
 #include "MenuScene.h"
-
 #include "GameScene.h"
 #include "Background.h"
-
 #include "Game.h"
+#include "Input.h"
 
 MenuScene::MenuScene()
 {
-  // Add scene objects
-  _sceneObjects.push_back(new Background("Assets/spaceshooter/rsz_game_over.jpg"));
+  
 }
 
 MenuScene::~MenuScene()
 {
   Clear();
-}
-
-MenuScene* MenuScene::Instance()
-{
-  static MenuScene instance;
-
-  return &instance;
 }
 
 void MenuScene::Update()
@@ -34,6 +25,13 @@ void MenuScene::Update()
      (*i)->Update();
       i++;
     }
+  }
+
+  if (Input::GetKeyDown('r')) {
+    Game::Instance()->Restart();
+  }
+  if (Input::GetKeyDown(27)) {
+    Game::Instance()->End();
   }
 }
 

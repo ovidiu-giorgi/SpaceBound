@@ -33,7 +33,7 @@ unsigned int GameTime::GetDeltaTimeMS()
 
 /*
  * Get ticks since the start of the game until the start of current frame.
-*/
+ */
 
 unsigned int GameTime::GetTimeMS()
 {
@@ -42,7 +42,7 @@ unsigned int GameTime::GetTimeMS()
 
 /*
  * Get ticks since the start of the game until the current moment.
-*/
+ */
 
 unsigned int GameTime::GetElapsedTimeMS()
 {
