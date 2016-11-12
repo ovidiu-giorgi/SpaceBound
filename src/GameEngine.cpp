@@ -11,6 +11,7 @@
 void GameEngine::Init()
 {
   SDL_Init(SDL_INIT_EVERYTHING);
+  SDL_ShowCursor(SDL_DISABLE);
 
   Screen::Init();
 }
