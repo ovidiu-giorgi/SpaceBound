@@ -1,11 +1,10 @@
 #include "Player.h"
-
 #include "GameScene.h"
-
 #include "Screen.h"
 #include "Game.h"
 #include "GameTime.h"
 #include "Input.h"
+#include "PlayerProjectile.h"
 
 #include <cstdlib>
 
@@ -16,20 +15,32 @@
 
 Player::Player()
 {
-  _position = Vector2((Screen::GetWidth() - IMG_WIDTH) / 2, IMG_HEIGHT);
+  // Set position
+  _position = Vector2((Screen::GetWidth() - IMG_WIDTH) / 2, IMG_HEIGHT + 30);
   // _position = Vector2(rand() % Screen::GetWidth(), rand() % Screen::GetHeight());
-  _image = Resources::LoadImage("Assets/Ships/player_ship_blue.png");
-  _imgWidth = IMG_WIDTH;
-  _imgHeight = IMG_HEIGHT;
-  _speed = SPEED;
-}
 
-Player::Player(int x, int y)
-{
-  _position = Vector2(x, y);
+  // Load images
   _image = Resources::LoadImage("Assets/Ships/player_ship_blue.png");
   _imgWidth = IMG_WIDTH;
   _imgHeight = IMG_HEIGHT;
+
+  std::string _exhaustImgNames[] = {
+    "Assets/Effects/rsz_fire11.png",
+    "Assets/Effects/rsz_fire12.png",
+    "Assets/Effects/rsz_fire13.png",
+    };
+
+  _exhaust.first = new Effect(
+    _exhaustImgNames, /* images that will be looped */
+    3, /* imgNames length */
+    100,  /* interval (ms) in which the images will be changed */
+    Vector2(_position.GetX() + 10, _position.GetY() - _imgHeight + 12));
+  _exhaust.second = new Effect(
+    _exhaustImgNames,
+    3,
+    100,
+    Vector2(_position.GetX() + _imgWidth - 17, _position.GetY() - _imgHeight + 12));
+
   _speed = SPEED;
 }
 
@@ -45,6 +56,10 @@ void Player::Update()
       i++;
     }
   }
+
+  // Update exhaust image
+  _exhaust.first->Update();
+  _exhaust.second->Update();
 
   // Update player ship
   Vector2 velocity = Vector2::Zero;
@@ -75,13 +90,14 @@ void Player::Update()
 
   if (!OutOfBounds(position)) {
     _position = position;
-  }
+    _exhaust.first->SetPosition(_exhaust.first->GetPosition() + velocity * _speed * GameTime::GetDeltaTime());
+    _exhaust.second->SetPosition(_exhaust.second->GetPosition() + velocity * _speed * GameTime::GetDeltaTime());
+  }  
 }
 
 void Player::Shoot()
 {
   if (GameTime::GetTimeMS() - _lastTimeMS >= INTERVAL) {
-    // GameScene::Instance()->AddGameObject(new PlayerProjectile(_position));
     _bullets.push_back(new PlayerProjectile(_position));
     _lastTimeMS = GameTime::GetTimeMS();
   }
@@ -89,13 +105,17 @@ void Player::Shoot()
 
 void Player::Draw()
 {
-  // Update bullets
+  // Draw bullets
   for (auto it : _bullets) {
     it->Draw();
   }
 
-  // Update player ship
+  // Draw ship
   Screen::Draw(_image, _position);
+
+  // Draw exhaust
+  _exhaust.first->Draw();
+  _exhaust.second->Draw();
 }
 
 bool Player::OutOfBounds(const Vector2& position)

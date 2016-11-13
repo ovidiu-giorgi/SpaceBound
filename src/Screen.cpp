@@ -1,5 +1,4 @@
 #include "Screen.h"
-
 #include "Window.h"
 
 SDL_Surface* Screen::_surface(nullptr);

@@ -1,6 +1,4 @@
 #include "PlayerProjectile.h"
-
-#include "Input.h"
 #include "GameTime.h"
 
 #include <cstdlib>

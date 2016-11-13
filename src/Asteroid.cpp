@@ -1,8 +1,6 @@
 #include "Asteroid.h"
-
 #include "Input.h"
 #include "GameTime.h"
-
 #include "GameScene.h"
 #include "Explosion.h"
 

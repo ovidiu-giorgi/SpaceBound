@@ -2,7 +2,6 @@
 #define SCROLLINGBG_H
 
 #include "SceneObject.h"
-
 #include "Background.h"
 
 #include <vector>

@@ -1,5 +1,4 @@
 #include "Resources.h"
-
 #include "ImageLoader.h"
 
 Image* Resources::LoadImage(const std::string& filename)

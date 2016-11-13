@@ -1,5 +1,4 @@
 #include "ScrollingBG.h"
-
 #include "Screen.h"
 #include "GameTime.h"
 

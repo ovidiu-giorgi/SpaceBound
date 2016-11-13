@@ -1,5 +1,4 @@
 #include "Background.h"
-
 #include "Resources.h"
 #include "Screen.h"
 

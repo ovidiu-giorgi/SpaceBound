@@ -2,7 +2,6 @@
 #define SHIP_H
 
 #include "GameObject.h"
-
 #include "Projectile.h"
 
 #include <vector>

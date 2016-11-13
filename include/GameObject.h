@@ -2,7 +2,6 @@
 #define GAMEOBJECT_H
 
 #include "SceneObject.h"
-
 #include "Vector2.h"
 #include "Image.h"
 #include "Screen.h"

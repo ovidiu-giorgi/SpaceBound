@@ -1,5 +1,4 @@
 #include "Explosion.h"
-
 #include "Resources.h"
 #include "Screen.h"
 #include "GameTime.h"

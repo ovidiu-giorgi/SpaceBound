@@ -4,13 +4,12 @@
 #include <vector>
 
 #include "Ship.h"
-#include "PlayerProjectile.h"
+#include "Effect.h"
 
 class Player : public Ship
 {
 public:
   Player();
-  Player(int x, int y);
 
   void Update();
   void Draw();
@@ -19,6 +18,9 @@ public:
 private:
   void Shoot();
   bool OutOfBounds(const Vector2& position);
+
+private:
+  std::pair<Effect*, Effect*> _exhaust;
 };
 
 #endif
