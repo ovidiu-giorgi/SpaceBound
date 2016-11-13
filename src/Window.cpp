@@ -1,12 +1,14 @@
 #include "Window.h"
 
-#define WINDOW_WIDTH 500
-#define WINDOW_HEIGHT 700
+#define WINDOW_WIDTH 900
+#define WINDOW_HEIGHT 1000
 
-#define X_POSITION 450
-#define Y_POSITION 100
+#define X_POSITION 510
+#define Y_POSITION 40
 
 #define WINDOW_FLAGS SDL_WINDOW_SHOWN
+
+#include <iostream>
 
 SDL_Window* Window::_window(nullptr);
 SDL_Renderer* Window::_renderer(nullptr);
@@ -14,13 +16,29 @@ SDL_Texture* Window::_texture(nullptr);
 
 void Window::Init()
 {
-  _window = SDL_CreateWindow("Space Bound",
-    X_POSITION, Y_POSITION, WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_FLAGS);
+  SDL_DisplayMode current;
+
+  SDL_GetCurrentDisplayMode(0, &current);
+
+  int window_width = WINDOW_WIDTH;
+  int window_height = WINDOW_HEIGHT;
+  int x_position = X_POSITION;
+  int y_position = Y_POSITION;
+
+  if (current.w == 1366 && current.h == 768) {
+    window_width = 600;
+    window_height = 700;
+    x_position = 383;
+    y_position = 34;
+  }
+
+  _window = SDL_CreateWindow("SpaceBound",
+    x_position, y_position, window_width, window_height, WINDOW_FLAGS);
 
   _renderer = SDL_CreateRenderer(_window, -1, 0);
 
   _texture = SDL_CreateTexture(_renderer, SDL_PIXELFORMAT_ARGB8888,
-    SDL_TEXTUREACCESS_STREAMING, WINDOW_WIDTH, WINDOW_HEIGHT);
+    SDL_TEXTUREACCESS_STREAMING, window_width, window_height);
 }
 
 void Window::Quit()
