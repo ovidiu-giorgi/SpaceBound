@@ -61,4 +61,5 @@ Controls
 
 * W, A, S, D to move.
 * L to shoot.
-* ESC to exit the game.
+* ESC to exit.
+* R to restart after you die.
