@@ -32,9 +32,12 @@ __pycache__
 *.log
 *.txt
 
+# Unused Assets
+spaceshooter/
+
 # CLion
 .idea
 .idea/*
 
-# Unused Assets
-spaceshooter/
+# Visual Studio Code
+.vscode/*
