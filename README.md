@@ -20,41 +20,33 @@ Directly from this page
 Using command line
 ------------------
 
-* Install git 
+* Install git
 
         sudo apt-get install -y git
 
 * Create a local directory for the project
 
         mkdir SpaceBound && cd SpaceBound
-    
+
 * Clone the project
 
-        git clone https://github.com/ovidiu-giorgi/SpaceBound 
+        git clone https://github.com/ovidiu-giorgi/SpaceBound
 
 Install and configure dependecies
 =================================
-
-Linux
---------------------------
 
 * Install dependecies from command line
 
         sudo chmod +x setup.sh
         sudo ./setup.sh
 
-Linux Command Line
-----------------------
-
 * Compile the project
 
         make
-        
+
 * Run the application
 
         ./SpaceBound.out
-
-* Enjoy!
 
 Controls
 ========
@@ -62,4 +54,4 @@ Controls
 * W, A, S, D to move.
 * L to shoot.
 * ESC to exit.
-* R to restart after you die.
+* R to restart the game after you die.
