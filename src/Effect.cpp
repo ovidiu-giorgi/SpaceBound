@@ -5,14 +5,14 @@
 
 Effect::Effect()
 {
-  
+
 }
 
-Effect::Effect(std::string imgNames[], int size, uint32_t interval, const Vector2& position)
+Effect::Effect(const std::vector<std::string>& imgNames, uint32_t interval, const Vector2& position)
 {
   // Load images
   _index = -1;
-  _size = size;
+  _size = imgNames.size();
   for (int i = 0; i < _size; i++) {
     _images.push_back(Resources::LoadImage(imgNames[i]));
   }

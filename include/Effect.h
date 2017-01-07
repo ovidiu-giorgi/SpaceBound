@@ -12,7 +12,7 @@ class Effect : public SceneObject
 public:
   Effect();
   virtual ~Effect();
-  Effect(std::string imgNames[], int size, uint32_t interval, const Vector2& position);
+  Effect(const std::vector<std::string>& imgNames, uint32_t interval, const Vector2& position);
   Effect(const Effect& other);
   Effect& operator=(const Effect& other);
 

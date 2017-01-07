@@ -24,21 +24,21 @@ Player::Player()
   _imgWidth = IMG_WIDTH;
   _imgHeight = IMG_HEIGHT;
 
-  std::string _exhaustImgNames[] = {
-    "Assets/Effects/rsz_fire11.png",
-    "Assets/Effects/rsz_fire12.png",
-    "Assets/Effects/rsz_fire13.png",
-    };
+  std::vector<std::string> _exhaustImgNames;
+  _exhaustImgNames.push_back("Assets/Effects/rsz_fire11.png");
+  _exhaustImgNames.push_back("Assets/Effects/rsz_fire12.png");
+  _exhaustImgNames.push_back("Assets/Effects/rsz_fire13.png");
+  _exhaustImgNames.push_back("Assets/Effects/rsz_fire12.png");
+
+  int interval = 100; // interval (ms) in which the images will be changed
 
   _exhaust.first = new Effect(
     _exhaustImgNames, /* images that will be looped */
-    3, /* imgNames length */
-    100,  /* interval (ms) in which the images will be changed */
+    interval,
     Vector2(_position.GetX() + 10, _position.GetY() - _imgHeight + 12));
   _exhaust.second = new Effect(
     _exhaustImgNames,
-    3,
-    100,
+    interval,
     Vector2(_position.GetX() + _imgWidth - 17, _position.GetY() - _imgHeight + 12));
 
   _speed = SPEED;
@@ -92,7 +92,7 @@ void Player::Update()
     _position = position;
     _exhaust.first->SetPosition(_exhaust.first->GetPosition() + velocity * _speed * GameTime::GetDeltaTime());
     _exhaust.second->SetPosition(_exhaust.second->GetPosition() + velocity * _speed * GameTime::GetDeltaTime());
-  }  
+  }
 }
 
 void Player::Shoot()
@@ -135,5 +135,5 @@ void Player::OnHit()
     return;
   }
 
-  _removed = true;
+  // _removed = true;
 }
