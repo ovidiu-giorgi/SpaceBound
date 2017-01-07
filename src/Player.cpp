@@ -64,18 +64,29 @@ void Player::Update()
   // Update player ship
   Vector2 velocity = Vector2::Zero;
 
+  // Movement
   if (Input::GetKey('w')) {
-    velocity += Vector2::Up;
+    if (canBeAddedSafely(Vector2::Up)) {
+      velocity += Vector2::Up;
+    }
   }
   if (Input::GetKey('d')) {
-    velocity += Vector2::Right;
+    if (canBeAddedSafely(Vector2::Right)) {
+      velocity += Vector2::Right;
+    }
   }
   if (Input::GetKey('s')) {
-    velocity += Vector2::Down;
+    if (canBeAddedSafely(Vector2::Down)) {
+      velocity += Vector2::Down;
+    }
   }
   if (Input::GetKey('a')) {
-    velocity += Vector2::Left;
+    if (canBeAddedSafely(Vector2::Left)) {
+      velocity += Vector2::Left;
+    }
   }
+
+  // Actions
   if (Input::GetKey('l')) {
     Shoot();
   }
@@ -86,13 +97,10 @@ void Player::Update()
 
   velocity.Normalize();
 
-  Vector2 position = _position + velocity * _speed * GameTime::GetDeltaTime();
+  addVectorSafely(velocity);
 
-  if (!OutOfBounds(position)) {
-    _position = position;
-    _exhaust.first->SetPosition(_exhaust.first->GetPosition() + velocity * _speed * GameTime::GetDeltaTime());
-    _exhaust.second->SetPosition(_exhaust.second->GetPosition() + velocity * _speed * GameTime::GetDeltaTime());
-  }
+  _exhaust.first->SetPosition(_exhaust.first->GetPosition() + getAddedVelocity(velocity));
+  _exhaust.second->SetPosition(_exhaust.second->GetPosition() + getAddedVelocity(velocity));
 }
 
 void Player::Shoot()
@@ -129,11 +137,28 @@ bool Player::OutOfBounds(const Vector2& position)
   return false;
 }
 
+Vector2 Player::getAddedVelocity(const Vector2& velocity)
+{
+  return velocity * _speed * GameTime::GetDeltaTime();
+}
+
+bool Player::canBeAddedSafely(Vector2 vector)
+{
+  return !OutOfBounds(_position + getAddedVelocity(vector.Normalized()));
+}
+
+void Player::addVectorSafely(Vector2 vector)
+{
+  if (canBeAddedSafely(vector)) {
+      _position += getAddedVelocity(vector.Normalized());
+  }
+}
+
 void Player::OnHit()
 {
   if (_removed) {
     return;
   }
 
-  // _removed = true;
+  _removed = true;
 }

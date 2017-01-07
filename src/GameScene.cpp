@@ -70,7 +70,7 @@ void GameScene::Update()
     for (int j = i + 1; j < _gameObjects.size(); ++j) {
       if (_gameObjects[i]->Collide(_gameObjects[j]) ||
           _gameObjects[j]->Collide(_gameObjects[i])) {
-        std::cout << "Collision\n";
+        // std::cout << "Collision\n";
         _gameObjects[i]->OnHit();
         _gameObjects[j]->OnHit();
       }
