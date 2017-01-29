@@ -36,7 +36,7 @@ Asteroid::Asteroid() :
   sizes[5] = std::make_pair(43, 43);
   sizes[6] = std::make_pair(45, 40);
 
-  // Pick a random size 
+  // Pick a random size
   int rnd_size = rand() % 6 + 1;
 
   // Pick a random color
